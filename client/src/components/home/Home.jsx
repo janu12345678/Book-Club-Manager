@@ -27,7 +27,6 @@ function Home() {
               noOfAttendees={club.noOfAttendees}
               cadence={club.cadence}
               status={club.status}
-              enrollmentState="Enrolled"
               isEnrolled={true}
             />
           ))

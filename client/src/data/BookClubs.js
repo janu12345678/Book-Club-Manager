@@ -62,7 +62,7 @@ const clubs = [
         participants: ["Charlie Brown", "Evan White", "Lara Croft", "Michael Jackson", "Tina Turner"],
         cadence: "Monthly",
         location: "Data Science Lab",
-        status: "active"
+        status: "inactive"
     },
     {
         id: 6,
@@ -88,7 +88,7 @@ const clubs = [
         participants: ["John Doe", "Lara Croft", "Neo Anderson", "Trinity O'Connor", "Morpheus King"],
         cadence: "Weekly",
         location: "Online (Zoom)",
-        status: "active"
+        status: "inactive"
     },
     {
         id: 8,

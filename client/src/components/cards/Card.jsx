@@ -160,11 +160,9 @@ function Card(props) {
               <Info className="w-5 h-5 text-orange-600" />
               <div>
                 <h3 className="font-medium text-gray-900 dark:text-white">Status</h3>
-                {props.status === 'inactive' ? (
-                  <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">Inactive</div>
-                ) : (
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">{props.status}</span>
-                )}
+                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${props.status === 'inactive' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                  {props.status}
+                </span>
               </div>
             </div>
           </div>
