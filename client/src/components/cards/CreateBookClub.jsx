@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import Nav from "../layout/Nav";
-import clubs from "../../data/BookClubs";
 import Input from "./Input";
+import useBookClubStore from '../../data/BookClubStore';
+
 
 const CreateBookClub = () => {
+  const addClub = useBookClubStore((state) => state.addClub);
   const [formData, setFormData] = useState({
-    clubName: '',
+    bookClubName: '',
     bookName: '',
     description: '',
     organizer: '',
-    attendees: '',
+    noOfAttendees: '',
     participants: '',
     cadence: '',
     location: ''
@@ -36,18 +38,19 @@ const CreateBookClub = () => {
       id: generateUniqueId(),
       ...formData,
       participants: formData.participants.split(',').map(p => p.trim()),
-      attendees: parseInt(formData.attendees),
+      noOfAttendees: parseInt(formData.noOfAttendees),
       status: 'active'
     };
 
-    clubs[newClub.id] = newClub;
-    
+    // clubs[newClub.id] = newClub;
+    addClub(newClub);
+
     setFormData({
-      clubName: '',
+      bookClubName: '',
       bookName: '',
       description: '',
       organizer: '',
-      attendees: '',
+      noOfAttendees : '',
       participants: '',
       cadence: '',
       location: ''
@@ -69,9 +72,9 @@ const CreateBookClub = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <Input
                 label="Book Club Name"
-                id="clubName"
-                name="clubName"
-                value={formData.clubName}
+                id="bookClubName"
+                name="bookClubName"
+                value={formData.bookClubName}
                 onChange={handleChange}
                 required
               />
@@ -111,10 +114,10 @@ const CreateBookClub = () => {
 
               <Input
                 label="Number of Attendees"
-                id="attendees"
-                name="attendees"
+                id="noOfAttendees"
+                name="noOfAttendees"
                 type="number"
-                value={formData.attendees}
+                value={formData.noOfAttendees}
                 onChange={handleChange}
                 required
               />

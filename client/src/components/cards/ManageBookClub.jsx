@@ -1,30 +1,32 @@
 import React, { useState } from "react";
 import Nav from "../layout/Nav";
 import Card from "./Card";
-import clubsData from "../../data/BookClubs";
 import SearchBar from "../SearchBar";
+import useBookClubStore from '../../data/BookClubStore';
 
 function Manage() {
-    const [clubs, setClubs] = useState(clubsData);
+    // Use the shared store instead of local state for clubs
+    const clubs = useBookClubStore((state) => state.clubs);
     const [searchQuery, setSearchQuery] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [filteredClubs, setFilteredClubs] = useState(clubs);
 
     const handleSearch = (event) => {
         event.preventDefault();
         setIsLoading(true);
-        // Simulate API call with setTimeout
+
         setTimeout(() => {
-            const filteredClubs = clubsData.filter((club) =>
+            const filtered = clubs.filter((club) =>
                 club.bookClubName.toLowerCase().includes(searchQuery.toLowerCase())
             );
-            setClubs(filteredClubs);
+            setFilteredClubs(filtered);
             setIsLoading(false);
-        }, 300);
+        }, 1000);
     };
 
     const clearSearch = () => {
         setSearchQuery("");
-        setClubs(clubsData);
+        setFilteredClubs(clubs);
     };
 
     return (
@@ -36,7 +38,7 @@ function Manage() {
                 handleSearch={handleSearch}
                 clearSearch={clearSearch}
             />
-            <div className="flex items-center flex-col">
+            <div className="flex items-center flex-col p-5 -mt-4">
                 {isLoading ? (
                     <div role="status" className="mt-10">
                         <svg
@@ -59,10 +61,10 @@ function Manage() {
                     </div>
                 ) : (
                     <>
-                        {clubs.length > 0 ? (
-                            clubs.map((club) => (
+                        {filteredClubs.length > 0 ? (
+                            filteredClubs.map((club) => (
                                 <Card
-                                    key={club.bookClubName}
+                                    key={club.id}
                                     bookClubName={club.bookClubName}
                                     description={club.description}
                                     organizer={club.organizer}
