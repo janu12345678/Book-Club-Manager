@@ -99,7 +99,7 @@ function Card(props) {
             <button
               onClick={handleEnrollmentClick}
               className={`px-4 py-2 rounded-lg text-white ${
-                enrollmentState === "Enroll" ? "bg-blue-600 hover:bg-blue-700 focus:ring-blue-300" : "bg-green-600 hover:bg-green-700 focus:ring-green-300"
+                enrollmentState === "Enroll" ? "bg-blue-700 hover:bg-blue-700 focus:ring-blue-300" : "bg-green-500 hover:bg-green-600 focus:ring-green-300"
               } focus:ring-4 focus:outline-none`}
             >
               {enrollmentState}
