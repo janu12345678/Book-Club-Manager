@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Nav from "../layout/Nav";
-import Input from "./Input";
+import Input from "../cards/Input";
 import useBookClubStore from '../../data/BookClubStore';
 
 
